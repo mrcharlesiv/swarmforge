@@ -25,7 +25,7 @@ export default function LandingPage() {
                 Pricing
               </Link>
               <Link href="/dashboard" className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg">
-                Get Started
+                Join Waitlist
               </Link>
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/dashboard" className="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-4 rounded-xl text-lg font-semibold">
-              Start Building Free
+              Join the Waitlist
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link href="/templates" className="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-8 py-4 rounded-xl text-lg font-semibold">
@@ -141,9 +141,9 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/dashboard" className="block text-center bg-cyan-500 hover:bg-cyan-600 text-white py-3 rounded-lg">
-                Upgrade to Pro
-              </Link>
+              <button disabled className="block w-full text-center bg-slate-600 text-slate-400 py-3 rounded-lg cursor-not-allowed">
+                Pro Coming Soon
+              </button>
             </div>
           </div>
         </div>
