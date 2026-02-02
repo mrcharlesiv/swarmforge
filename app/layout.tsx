@@ -4,6 +4,7 @@ import { AnimatedHeroBackground } from '@/app/components/animated-hero-backgroun
 import { ScrollToTop } from '@/app/components/scroll-to-top'
 
 export const metadata = {
+  metadataBase: new URL('https://mrcharlesiv.github.io/swarmforge/'),
   title: "SwarmForge - Build AI Agent Swarms Without Code",
   description: "Describe what you need. SwarmForge builds autonomous agent teams that work together to complete complex tasks.",
   icons: {
@@ -13,10 +14,10 @@ export const metadata = {
     title: "SwarmForge - Build AI Agent Swarms Without Code",
     description: "Describe what you need. SwarmForge builds autonomous agent teams that work together to complete complex tasks.",
     images: [{
-      url: 'https://mrcharlesiv.github.io/swarmforge/og-image.png',
+      url: '/og-image.png',
       width: 1200,
       height: 630,
-      alt: 'SwarmForge OG Image',
+      alt: 'SwarmForge - Build AI Agent Swarms Without Code',
     }],
     url: 'https://mrcharlesiv.github.io/swarmforge/',
     type: 'website',
@@ -25,7 +26,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: "SwarmForge - Build AI Agent Swarms Without Code",
     description: "Describe what you need. SwarmForge builds autonomous agent teams that work together to complete complex tasks.",
-    image: 'https://mrcharlesiv.github.io/swarmforge/og-image.png',
+    image: '/og-image.png',
   },
 };
 
