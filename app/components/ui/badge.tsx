@@ -17,12 +17,12 @@ export function Badge({
   dot = false,
 }: BadgeProps) {
   const variants = {
-    default: 'bg-slate-700 text-slate-300',
-    cyan: 'badge-cyan',
-    purple: 'badge-purple',
-    emerald: 'badge-emerald',
-    amber: 'bg-amber-500/15 text-amber-400',
-    rose: 'bg-rose-500/15 text-rose-400',
+    default: 'bg-slate-700/50 text-slate-300 border border-slate-600/50',
+    cyan: 'badge-cyan border border-cyan-500/20',
+    purple: 'badge-purple border border-purple-500/20',
+    emerald: 'badge-emerald border border-emerald-500/20',
+    amber: 'badge-amber border border-amber-500/20',
+    rose: 'badge-rose border border-rose-500/20',
   };
 
   const dotColors = {

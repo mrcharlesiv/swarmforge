@@ -210,6 +210,16 @@
     color: #34d399;
   }
 
+  .badge-amber {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+  }
+
+  .badge-rose {
+    background: rgba(244, 63, 94, 0.15);
+    color: #fb7185;
+  }
+
   /* Agent Tag */
   .agent-tag {
     @apply inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium;

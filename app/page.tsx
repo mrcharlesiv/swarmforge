@@ -423,8 +423,9 @@ export default function LandingPage() {
                   <p className="text-slate-400 text-sm">For serious automation</p>
                 </div>
                 <div className="mb-8">
-                  <span className="text-5xl font-bold text-white">$29</span>
+                  <span className="text-5xl font-bold text-white">$23</span>
                   <span className="text-slate-500">/month</span>
+                  <p className="text-sm text-emerald-400 mt-1">$276/year (save $72)</p>
                 </div>
                 <ul className="space-y-4 mb-8">
                   {[
@@ -433,8 +434,9 @@ export default function LandingPage() {
                     'All templates + custom',
                     'Advanced analytics',
                     'Priority support',
-                    'API access',
-                    'Team collaboration',
+                    'Full API access',
+                    'Team collaboration (5)',
+                    'Custom integrations',
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-slate-300">
                       <Check className="h-5 w-5 text-cyan-400 flex-shrink-0" />

@@ -2,66 +2,70 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Sparkles, Check, X, ArrowRight, HelpCircle, Zap, Shield, Users, Clock } from 'lucide-react'
+import { Sparkles, Check, X, ArrowRight, HelpCircle, Clock } from 'lucide-react'
+import { Navbar } from '@/app/components/navbar'
+import { Footer } from '@/app/components/footer'
+import { Card } from '@/app/components/ui/card'
+import { Badge } from '@/app/components/ui/badge'
+
+// Animation wrapper component
+function AnimatedSection({ 
+  children, 
+  className = '',
+  delay = 0 
+}: { 
+  children: React.ReactNode; 
+  className?: string;
+  delay?: number;
+}) {
+  return (
+    <div 
+      className={`transition-all duration-700 ease-out ${className}`}
+      style={{ 
+        opacity: 1,
+        transform: 'translateY(0)',
+        transitionDelay: `${delay}ms`
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(true)
 
   return (
-    <div className="min-h-screen bg-[#0A0F1C] text-white overflow-x-hidden">
-      {/* Animated Background */}
+    <div className="min-h-screen bg-[#0a0f1c] text-white overflow-x-hidden">
+      {/* Animated Background - Standardized */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px]" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] animate-float" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] animate-float animation-delay-500" />
       </div>
 
-      {/* Navigation */}
-      <nav className="relative z-10 border-b border-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-cyan-500/20 rounded-xl blur-lg group-hover:bg-cyan-500/30 transition-all" />
-                <div className="relative w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center">
-                  <Sparkles className="h-5 w-5 text-white" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-                SwarmForge
-              </span>
-            </Link>
-            <Link 
-              href="/" 
-              className="text-slate-400 hover:text-white font-medium transition-colors"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       <div className="relative z-10">
+        <Navbar />
+
         {/* Header */}
-        <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
-              <Clock className="h-4 w-4" />
+            <Badge variant="emerald" dot className="mb-6">
               Coming Q1 2026
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+            </Badge>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
               Simple, Transparent
-              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"> Pricing</span>
+              <span className="gradient-text"> Pricing</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
               Start free, scale as you grow. No hidden fees, no surprises. 
               Choose the plan that fits your needs.
             </p>
 
-            {/* Billing Toggle */}
-            <div className="inline-flex items-center gap-4 p-1.5 rounded-full bg-slate-800/50 border border-slate-700/50">
+            {/* Billing Toggle - Standardized */}
+            <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-slate-800/50 border border-slate-700/50">
               <button
                 onClick={() => setIsAnnual(false)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
                   !isAnnual 
                     ? 'bg-slate-700 text-white' 
                     : 'text-slate-400 hover:text-white'
@@ -71,14 +75,14 @@ export default function Pricing() {
               </button>
               <button
                 onClick={() => setIsAnnual(true)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
                   isAnnual 
-                    ? 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-900' 
+                    ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/25' 
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Annual
-                <span className="px-2 py-0.5 rounded-full bg-emerald-600/30 text-emerald-300 text-xs">
+                <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-xs">
                   Save 20%
                 </span>
               </button>
@@ -86,130 +90,136 @@ export default function Pricing() {
           </div>
         </section>
 
-        {/* Pricing Cards */}
-        <section className="pb-20 px-4 sm:px-6 lg:px-8">
+        {/* Pricing Cards - Using Card Component */}
+        <section className="pb-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
               {/* Free Plan */}
-              <div className="relative bg-gradient-to-b from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-3xl p-8 hover:border-slate-600/50 transition-all">
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-white mb-2">Free</h3>
-                  <p className="text-slate-400 text-sm">Perfect for exploring</p>
-                </div>
-                <div className="mb-8">
-                  <span className="text-5xl font-bold text-white">$0</span>
-                  <span className="text-slate-500">/month</span>
-                </div>
-                <ul className="space-y-4 mb-8">
-                  {[
-                    '3 swarms maximum',
-                    '100 runs/month',
-                    '5 pre-built templates',
-                    'Basic analytics',
-                    'Community support',
-                    'API access (limited)',
-                  ].map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-slate-300">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link 
-                  href="/dashboard"
-                  className="block w-full py-3.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-center transition-all"
-                >
-                  Get Started Free
-                </Link>
-              </div>
+              <AnimatedSection delay={0}>
+                <Card variant="pricing" className="h-full">
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-white mb-2">Free</h3>
+                    <p className="text-slate-400 text-sm">Perfect for exploring</p>
+                  </div>
+                  <div className="mb-8">
+                    <span className="text-5xl font-bold text-white">$0</span>
+                    <span className="text-slate-500">/month</span>
+                  </div>
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      '3 swarms maximum',
+                      '100 runs/month',
+                      '5 pre-built templates',
+                      'Basic analytics',
+                      'Community support',
+                      'API access (limited)',
+                    ].map((feature) => (
+                      <li key={feature} className="flex items-center gap-3 text-slate-300">
+                        <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link 
+                    href="/dashboard"
+                    className="btn-secondary w-full text-center"
+                  >
+                    Get Started Free
+                  </Link>
+                </Card>
+              </AnimatedSection>
 
-              {/* Pro Plan */}
-              <div className="relative bg-gradient-to-b from-slate-800/80 to-slate-900/80 border-2 border-cyan-500/30 rounded-3xl p-8">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-cyan-500 to-cyan-400 text-slate-900 text-sm font-bold rounded-full">
-                  Most Popular
-                </div>
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-white mb-2">Pro</h3>
-                  <p className="text-slate-400 text-sm">For serious automation</p>
-                </div>
-                <div className="mb-8">
-                  <span className="text-5xl font-bold text-white">
-                    ${isAnnual ? '23' : '29'}
-                  </span>
-                  <span className="text-slate-500">/month</span>
-                  {isAnnual && (
-                    <p className="text-sm text-emerald-400 mt-1">
-                      ${Math.round(23 * 12)}/year (save $72)
-                    </p>
-                  )}
-                </div>
-                <ul className="space-y-4 mb-8">
-                  {[
-                    'Unlimited swarms',
-                    '10,000 runs/month',
-                    'All templates + custom',
-                    'Advanced analytics',
-                    'Priority support',
-                    'Full API access',
-                    'Team collaboration (5)',
-                    'Custom integrations',
-                  ].map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-slate-300">
-                      <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-cyan-400" />
-                      </div>
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button 
-                  disabled
-                  className="block w-full py-3.5 rounded-xl bg-slate-700 text-slate-400 font-semibold text-center cursor-not-allowed"
-                >
-                  Coming Soon
-                </button>
-              </div>
+              {/* Pro Plan - Popular */}
+              <AnimatedSection delay={100}>
+                <Card variant="popular" className="h-full relative">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <Badge variant="cyan">Most Popular</Badge>
+                  </div>
+                  <div className="mb-8 pt-2">
+                    <h3 className="text-xl font-semibold text-white mb-2">Pro</h3>
+                    <p className="text-slate-400 text-sm">For serious automation</p>
+                  </div>
+                  <div className="mb-8">
+                    <span className="text-5xl font-bold text-white">
+                      ${isAnnual ? '23' : '29'}
+                    </span>
+                    <span className="text-slate-500">/month</span>
+                    {isAnnual && (
+                      <p className="text-sm text-emerald-400 mt-1">
+                        ${Math.round(23 * 12)}/year (save $72)
+                      </p>
+                    )}
+                  </div>
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      'Unlimited swarms',
+                      '10,000 runs/month',
+                      'All templates + custom',
+                      'Advanced analytics',
+                      'Priority support',
+                      'Full API access',
+                      'Team collaboration (5)',
+                      'Custom integrations',
+                    ].map((feature) => (
+                      <li key={feature} className="flex items-center gap-3 text-slate-300">
+                        <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-cyan-400" />
+                        </div>
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button 
+                    disabled
+                    className="w-full py-3.5 rounded-xl bg-slate-700 text-slate-400 font-semibold text-center cursor-not-allowed"
+                  >
+                    Coming Soon
+                  </button>
+                </Card>
+              </AnimatedSection>
 
               {/* Enterprise Plan */}
-              <div className="relative bg-gradient-to-b from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-3xl p-8 hover:border-slate-600/50 transition-all">
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-white mb-2">Enterprise</h3>
-                  <p className="text-slate-400 text-sm">For large organizations</p>
-                </div>
-                <div className="mb-8">
-                  <span className="text-5xl font-bold text-white">Custom</span>
-                </div>
-                <ul className="space-y-4 mb-8">
-                  {[
-                    'Everything in Pro',
-                    'Unlimited runs',
-                    'Unlimited team members',
-                    'SSO & SAML',
-                    'Audit logs',
-                    'SLA guarantee',
-                    'Dedicated support',
-                    'Custom AI training',
-                  ].map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-slate-300">
-                      <div className="w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-indigo-400" />
-                      </div>
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button className="block w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white font-semibold text-center transition-all">
-                  Contact Sales
-                </button>
-              </div>
+              <AnimatedSection delay={200}>
+                <Card variant="pricing" className="h-full">
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-white mb-2">Enterprise</h3>
+                    <p className="text-slate-400 text-sm">For large organizations</p>
+                  </div>
+                  <div className="mb-8">
+                    <span className="text-5xl font-bold text-white">Custom</span>
+                  </div>
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      'Everything in Pro',
+                      'Unlimited runs',
+                      'Unlimited team members',
+                      'SSO & SAML',
+                      'Audit logs',
+                      'SLA guarantee',
+                      'Dedicated support',
+                      'Custom AI training',
+                    ].map((feature) => (
+                      <li key={feature} className="flex items-center gap-3 text-slate-300">
+                        <div className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-purple-400" />
+                        </div>
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button className="btn-secondary w-full text-center">
+                    Contact Sales
+                  </button>
+                </Card>
+              </AnimatedSection>
             </div>
           </div>
         </section>
 
         {/* Feature Comparison */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/30 border-y border-slate-800/50">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30 border-y border-slate-800/50">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-white text-center mb-12">
               Compare Plans
@@ -222,7 +232,7 @@ export default function Pricing() {
                     <th className="text-left py-4 px-4 text-slate-400 font-medium">Feature</th>
                     <th className="text-center py-4 px-4 text-white font-semibold">Free</th>
                     <th className="text-center py-4 px-4 text-cyan-400 font-semibold">Pro</th>
-                    <th className="text-center py-4 px-4 text-indigo-400 font-semibold">Enterprise</th>
+                    <th className="text-center py-4 px-4 text-purple-400 font-semibold">Enterprise</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -238,7 +248,7 @@ export default function Pricing() {
                     { name: 'Audit logs', free: <X className="w-5 h-5 text-slate-600 mx-auto" />, pro: '7 days', enterprise: 'Full history' },
                     { name: 'SLA', free: <X className="w-5 h-5 text-slate-600 mx-auto" />, pro: <X className="w-5 h-5 text-slate-600 mx-auto" />, enterprise: <Check className="w-5 h-5 text-emerald-400 mx-auto" /> },
                   ].map((row, idx) => (
-                    <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/20">
+                    <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/20 transition-colors">
                       <td className="py-4 px-4 text-slate-300">{row.name}</td>
                       <td className="py-4 px-4 text-center text-slate-400">{row.free}</td>
                       <td className="py-4 px-4 text-center text-slate-300">{row.pro}</td>
@@ -252,14 +262,14 @@ export default function Pricing() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-white text-center mb-12">
               Frequently Asked Questions
             </h2>
             <div className="space-y-4">
               {faqs.map((faq, idx) => (
-                <div key={idx} className="bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/30 rounded-2xl p-6 hover:border-slate-600/50 transition-all">
+                <Card key={idx} variant="glass" className="hover:border-slate-600/50 transition-colors">
                   <h3 className="font-semibold text-white mb-2 flex items-start gap-3">
                     <HelpCircle className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
                     {faq.question}
@@ -267,18 +277,18 @@ export default function Pricing() {
                   <p className="text-slate-400 text-sm leading-relaxed pl-8">
                     {faq.answer}
                   </p>
-                </div>
+                </Card>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Banner */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        {/* CTA Banner - Standardized */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="relative bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 border border-cyan-500/20 rounded-3xl p-10 text-center overflow-hidden">
+            <Card variant="glass" className="relative overflow-hidden text-center p-10">
               <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
               
               <div className="relative">
                 <h2 className="text-3xl font-bold text-white mb-4">
@@ -289,30 +299,17 @@ export default function Pricing() {
                 </p>
                 <Link 
                   href="/dashboard" 
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
+                  className="btn-primary text-lg"
                 >
                   Join the Waitlist
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </div>
-            </div>
+            </Card>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-slate-800/50 py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center">
-                <Sparkles className="h-4 w-4 text-white" />
-              </div>
-              <span className="text-lg font-bold text-white">SwarmForge</span>
-            </div>
-            <p className="text-slate-500 text-sm">
-              © 2026 SwarmForge. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   )

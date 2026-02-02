@@ -21,7 +21,7 @@ export function Card({
     feature: 'card-feature',
     template: 'card-template',
     pricing: 'card-pricing',
-    popular: 'card-pricing-popular',
+    popular: 'card-pricing-popular p-8',
     glass: 'card-glass',
   };
 
