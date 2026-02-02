@@ -12,9 +12,9 @@ const footerLinks = {
     { label: 'Dashboard', href: '/dashboard' },
   ],
   resources: [
-    { label: 'Documentation', href: '/dashboard' },
-    { label: 'API Reference', href: '/dashboard' },
-    { label: 'Guides', href: '/dashboard' },
+    { label: 'Documentation', href: '/docs' },
+    { label: 'API Reference', href: '/docs' },
+    { label: 'Guides', href: '/docs' },
     { label: 'Blog', href: '/dashboard' },
   ],
   company: [

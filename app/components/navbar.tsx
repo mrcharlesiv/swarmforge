@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
+  { href: '/features', label: 'Features' },
   { href: '/templates', label: 'Templates' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/builder', label: 'Builder' },
