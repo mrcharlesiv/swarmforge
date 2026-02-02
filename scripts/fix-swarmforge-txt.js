@@ -12,9 +12,17 @@ const swarmforgeTxtPath = path.join(distPath, 'swarmforge.txt');
 console.log('🔧 Post-build: Creating swarmforge.txt to fix 404 error...');
 
 try {
-  // Create an empty swarmforge.txt file
-  fs.writeFileSync(swarmforgeTxtPath, '');
-  console.log('✅ swarmforge.txt created successfully');
+  // Copy content from index.txt to swarmforge.txt to make it a valid RSC file
+  const indexTxtPath = path.join(distPath, 'index.txt');
+  if (fs.existsSync(indexTxtPath)) {
+    const indexContent = fs.readFileSync(indexTxtPath, 'utf8');
+    fs.writeFileSync(swarmforgeTxtPath, indexContent);
+    console.log('✅ swarmforge.txt created with content from index.txt');
+  } else {
+    // Fallback to empty file if index.txt doesn't exist
+    fs.writeFileSync(swarmforgeTxtPath, '');
+    console.log('✅ swarmforge.txt created with empty content');
+  }
   
   // Verify it was created
   if (fs.existsSync(swarmforgeTxtPath)) {
