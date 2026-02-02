@@ -1,0 +1,9 @@
+{
+  "name": "swarmforge-dashboard",
+  "version": "1.0.0",
+  "description": "SwarmForge Progress Dashboard Agent",
+  "scripts": {
+    "build": "node build-dashboard.js",
+    "watch": "node build-dashboard.js --watch"
+  }
+}
