@@ -1,0 +1,148 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { Sparkles, Github, Twitter, Linkedin, Mail } from 'lucide-react';
+
+const footerLinks = {
+  product: [
+    { label: 'Templates', href: '/templates' },
+    { label: 'Builder', href: '/builder' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Dashboard', href: '/dashboard' },
+  ],
+  resources: [
+    { label: 'Documentation', href: '#' },
+    { label: 'API Reference', href: '#' },
+    { label: 'Guides', href: '#' },
+    { label: 'Blog', href: '#' },
+  ],
+  company: [
+    { label: 'About', href: '#' },
+    { label: 'Careers', href: '#' },
+    { label: 'Contact', href: '#' },
+    { label: 'Press Kit', href: '#' },
+  ],
+  legal: [
+    { label: 'Privacy', href: '#' },
+    { label: 'Terms', href: '#' },
+    { label: 'Security', href: '#' },
+  ],
+};
+
+const socialLinks = [
+  { icon: Github, href: 'https://github.com', label: 'GitHub' },
+  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+];
+
+export function Footer() {
+  return (
+    <footer className="border-t border-slate-800/50 bg-slate-900/50">
+      <div className="container-custom py-16 lg:py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12">
+          {/* Brand Column */}
+          <div className="col-span-2">
+            <Link href="/" className="flex items-center gap-2.5 mb-4">
+              <Sparkles className="h-6 w-6 text-cyan-400" />
+              <span className="text-lg font-bold text-white">
+                Swarm<span className="text-cyan-400">Forge</span>
+              </span>
+            </Link>
+            <p className="text-slate-400 text-sm mb-6 max-w-xs">
+              Build autonomous AI agent teams that work together to complete complex tasks — no coding required.
+            </p>
+            {/* Newsletter */}
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full pl-9 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                />
+              </div>
+              <button className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-medium rounded-lg transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </div>
+
+          {/* Links Columns */}
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-sm">Product</h4>
+            <ul className="space-y-3">
+              {footerLinks.product.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-sm">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-sm">Company</h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-sm">Legal</h4>
+            <ul className="space-y-3">
+              {footerLinks.legal.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-500 text-sm">
+            © 2026 SwarmForge. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 rounded-lg transition-all"
+                aria-label={social.label}
+              >
+                <social.icon className="h-5 w-5" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
