@@ -32,9 +32,10 @@ function AnimatedSection({
   className?: string;
   delay?: number;
 }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Start visible, then animate
 
   useEffect(() => {
+    // Small delay for smooth entrance, but content is already visible
     const timer = setTimeout(() => setIsVisible(true), delay);
     return () => clearTimeout(timer);
   }, [delay]);
@@ -43,8 +44,8 @@ function AnimatedSection({
     <div 
       className={`transition-all duration-700 ease-out ${className}`}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        opacity: 1, // Always visible
+        transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
       }}
     >
       {children}

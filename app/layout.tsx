@@ -10,7 +10,7 @@ export const metadata = {
     title: "SwarmForge - Build AI Agent Swarms Without Code",
     description: "Describe what you need. SwarmForge builds autonomous agent teams that work together to complete complex tasks.",
     images: [{
-      url: '/og-image.png',
+      url: 'https://mrcharlesiv.github.io/swarmforge/og-image.png',
       width: 1200,
       height: 630,
       alt: 'SwarmForge OG Image',
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: "SwarmForge - Build AI Agent Swarms Without Code",
     description: "Describe what you need. SwarmForge builds autonomous agent teams that work together to complete complex tasks.",
-    image: '/og-image.png',
+    image: 'https://mrcharlesiv.github.io/swarmforge/og-image.png',
   },
 };
 
