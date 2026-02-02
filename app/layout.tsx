@@ -36,7 +36,7 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://mrcharlesiv.github.io/swarmforge/" />
       </head>
-      <body className="min-h-screen bg-gray-50">
+      <body className="min-h-screen bg-[#0a0f1c] text-white">
         {children}
       </body>
     </html>
