@@ -14,12 +14,14 @@ import {
   BarChart3,
   Shield,
   Users,
-  Loader2
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import { Navbar } from '@/app/components/navbar';
 import { Footer } from '@/app/components/footer';
 import { Card } from '@/app/components/ui/card';
 import { Badge } from '@/app/components/ui/badge';
+import { supabase } from '@/lib/supabase';
 
 // Animation wrapper
 function AnimatedSection({ 
@@ -98,16 +100,39 @@ export default function Dashboard() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     
     setLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setLoading(false);
-    setSubmitted(true);
+    setError(null);
+    
+    try {
+      const { error: supabaseError } = await supabase
+        .from('waitlist')
+        .insert([{ 
+          email: email.toLowerCase().trim(),
+          source: 'swarmforge_prelaunch'
+        }]);
+      
+      if (supabaseError) {
+        if (supabaseError.code === '23505') {
+          setError('This email is already on the waitlist!');
+        } else {
+          setError('Something went wrong. Please try again.');
+          console.error('Supabase error:', supabaseError);
+        }
+      } else {
+        setSubmitted(true);
+      }
+    } catch (err) {
+      setError('Network error. Please check your connection and try again.');
+      console.error('Submit error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -156,6 +181,12 @@ export default function Dashboard() {
                 </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {error && (
+                    <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-3">
+                      <AlertCircle className="h-5 w-5 text-rose-400 flex-shrink-0" />
+                      <p className="text-rose-400 text-sm">{error}</p>
+                    </div>
+                  )}
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" />
                     <input
