@@ -1,27 +1,28 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
+import Link from 'next/link'
 import { 
   Sparkles, 
-  Layers, 
-  Puzzle, 
-  BarChart3, 
-  Code2, 
-  Users,
-  ArrowRight,
-  Zap,
-  Bot,
-  Workflow,
-  Shield,
-  Globe,
-  Clock,
+  Zap, 
+  Shield, 
+  ArrowRight, 
   Check,
-  Play
-} from 'lucide-react';
-import { Navbar } from '@/app/components/navbar';
-import { Footer } from '@/app/components/footer';
-import { Card } from '@/app/components/ui/card';
-import { Badge } from '@/app/components/ui/badge';
+  Users,
+  Clock,
+  Lock,
+  Workflow,
+  Globe,
+  Bot,
+  Eye,
+  Code,
+  MessageSquare,
+  Layers,
+  Gauge
+} from 'lucide-react'
+import { Navbar } from '@/app/components/navbar'
+import { Footer } from '@/app/components/footer'
+import { Card } from '@/app/components/ui/card'
+import { Badge } from '@/app/components/ui/badge'
 
 // Animation wrapper component
 function AnimatedSection({ 
@@ -47,229 +48,120 @@ function AnimatedSection({
   );
 }
 
-// Feature data
-const features = [
-  {
-    id: 'visual-builder',
-    icon: <Layers className="h-8 w-8" />,
-    title: 'Visual Builder',
-    description: 'Design complex agent workflows with our intuitive drag-and-drop interface. No coding required to build powerful AI swarms.',
-    color: 'cyan',
-    highlights: [
-      'Drag-and-drop workflow editor',
-      'Real-time collaboration',
-      'Pre-built components',
-      'Visual debugging tools'
-    ]
-  },
-  {
-    id: 'multi-provider',
-    icon: <Puzzle className="h-8 w-8" />,
-    title: 'Multi-Provider',
-    description: 'Connect to any AI model provider. Use OpenAI, Anthropic, Google, or bring your own models with a single configuration.',
-    color: 'purple',
-    highlights: [
-      'OpenAI GPT-4, GPT-3.5',
-      'Anthropic Claude',
-      'Google Gemini',
-      'Custom model endpoints'
-    ]
-  },
-  {
-    id: 'templates',
-    icon: <Sparkles className="h-8 w-8" />,
-    title: 'Templates',
-    description: 'Start fast with battle-tested templates for common use cases. Customize them to fit your specific needs.',
-    color: 'amber',
-    highlights: [
-      'Lead generation swarms',
-      'Content creation teams',
-      'Research assistants',
-      'Customer support bots'
-    ]
-  },
-  {
-    id: 'analytics',
-    icon: <BarChart3 className="h-8 w-8" />,
-    title: 'Analytics',
-    description: 'Track performance, monitor costs, and optimize your swarms with detailed insights and custom dashboards.',
-    color: 'emerald',
-    highlights: [
-      'Real-time metrics',
-      'Cost tracking',
-      'Performance optimization',
-      'Custom reports'
-    ]
-  },
-  {
-    id: 'api',
-    icon: <Code2 className="h-8 w-8" />,
-    title: 'Powerful API',
-    description: 'Full-featured REST API and SDKs for JavaScript, Python, and more. Integrate swarms into any application.',
-    color: 'rose',
-    highlights: [
-      'RESTful API',
-      'TypeScript SDK',
-      'Python SDK',
-      'Webhook support'
-    ]
-  },
-  {
-    id: 'collaboration',
-    icon: <Users className="h-8 w-8" />,
-    title: 'Collaboration',
-    description: 'Work together with your team. Share swarms, review runs, and manage permissions with organization support.',
-    color: 'cyan',
-    highlights: [
-      'Team workspaces',
-      'Role-based access',
-      'Shared templates',
-      'Activity logs'
-    ]
-  }
-];
-
-// Additional capabilities
-const capabilities = [
-  {
-    icon: <Bot className="h-6 w-6 text-cyan-400" />,
-    title: 'Multi-Agent Collaboration',
-    description: 'Agents work together, share context, and coordinate tasks automatically using advanced orchestration.'
-  },
-  {
-    icon: <Clock className="h-6 w-6 text-purple-400" />,
-    title: 'Real-Time Monitoring',
-    description: 'Watch your swarms work with live logs, progress bars, and status updates in real-time.'
-  },
-  {
-    icon: <Shield className="h-6 w-6 text-emerald-400" />,
-    title: 'Enterprise Security',
-    description: 'SOC 2 Type II compliant with end-to-end encryption for all data and comprehensive audit logs.'
-  },
-  {
-    icon: <Workflow className="h-6 w-6 text-amber-400" />,
-    title: 'Human-in-the-Loop',
-    description: 'Set approval gates and manual checkpoints for critical decisions when AI needs human oversight.'
-  },
-  {
-    icon: <Globe className="h-6 w-6 text-rose-400" />,
-    title: '100+ Integrations',
-    description: 'Connect with Slack, Notion, Salesforce, HubSpot, and all your favorite tools seamlessly.'
-  },
-  {
-    icon: <Zap className="h-6 w-6 text-cyan-400" />,
-    title: 'Auto-Scaling',
-    description: 'Infrastructure that scales automatically with your needs. From 10 to 10,000 runs per day.'
-  }
-];
-
-// Pricing tiers for comparison
-const tiers = [
-  {
-    name: 'Free',
-    description: 'Perfect for getting started',
-    features: ['3 swarms', '100 runs/month', '5 templates', 'Basic analytics', 'Community support']
-  },
-  {
-    name: 'Pro',
-    description: 'For serious automation',
-    popular: true,
-    features: ['Unlimited swarms', '10,000 runs/month', 'All templates', 'Advanced analytics', 'Priority support', 'API access', 'Team collaboration']
-  },
-  {
-    name: 'Enterprise',
-    description: 'For large organizations',
-    features: ['Everything in Pro', 'Unlimited runs', 'SSO & SAML', 'Audit logs', 'SLA guarantee', 'Dedicated support', 'Custom training']
-  }
-];
-
 export default function Features() {
   return (
     <div className="min-h-screen bg-[#0a0f1c] text-white overflow-x-hidden">
-      {/* Animated Background */}
+      {/* Animated Background - Standardized */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] animate-float" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] animate-float animation-delay-500" />
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] animate-float" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] animate-float animation-delay-500" />
       </div>
 
       <div className="relative z-10">
         <Navbar />
 
         {/* Hero Section */}
-        <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto text-center">
-            <AnimatedSection>
-              <Badge variant="cyan" dot className="mb-6">
-                Features
-              </Badge>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-                Everything you need to{' '}
-                <span className="gradient-text">build AI swarms</span>
-              </h1>
-              <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-                Powerful tools for building, deploying, and managing autonomous AI agent teams. 
-                From visual design to enterprise-grade security, we&apos;ve got you covered.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/dashboard" className="btn-primary text-lg py-4 px-8">
-                  Start Building Free
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-                <Link href="/templates" className="btn-secondary text-lg py-4 px-8">
-                  <Play className="h-5 w-5" />
-                  View Templates
-                </Link>
-              </div>
-            </AnimatedSection>
+        <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge variant="cyan" dot className="mb-6">
+              Features
+            </Badge>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+              Everything You Need to
+              <span className="gradient-text"> Build AI Agent Swarms</span>
+            </h1>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+              Powerful tools for building, deploying, and managing autonomous AI agent teams 
+              that work together to complete complex tasks.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/dashboard" className="btn-primary text-lg py-4 px-8">
+                Start Building Free
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link href="/templates" className="btn-secondary text-lg py-4 px-8">
+                View Templates
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* Feature Grid */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-spotlight">
+        {/* Features Grid */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30 border-y border-slate-800/50">
           <div className="max-w-7xl mx-auto">
-            <AnimatedSection delay={100} className="text-center mb-16">
-              <Badge variant="purple" className="mb-4">Core Features</Badge>
+            <div className="text-center mb-16">
+              <Badge variant="amber" className="mb-4">Platform Features</Badge>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Built for scale
+                Built for Scale
               </h2>
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                Every feature designed to help you build reliable, production-ready AI swarms.
+                Enterprise-grade infrastructure meets intuitive design.
               </p>
-            </AnimatedSection>
+            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature, idx) => (
-                <AnimatedSection key={feature.id} delay={150 + idx * 50}>
-                  <Card 
-                    variant="feature" 
-                    className="h-full group"
-                  >
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 ${
+              {[
+                {
+                  icon: <Users className="h-6 w-6" />,
+                  title: 'Multi-Agent Collaboration',
+                  description: 'Agents work together, share context, and coordinate tasks automatically. Each agent has a specialized role and can communicate with others to accomplish complex workflows.',
+                  features: ['Role-based agents', 'Context sharing', 'Task delegation'],
+                  color: 'cyan'
+                },
+                {
+                  icon: <Eye className="h-6 w-6" />,
+                  title: 'Real-Time Monitoring',
+                  description: 'Watch your swarms work with live logs, progress bars, and status updates. See exactly what each agent is doing at any moment.',
+                  features: ['Live execution logs', 'Progress tracking', 'Performance metrics'],
+                  color: 'purple'
+                },
+                {
+                  icon: <Lock className="h-6 w-6" />,
+                  title: 'Enterprise Security',
+                  description: 'SOC 2 compliant with end-to-end encryption for all data. Your information never leaves secure environments, and we never train on your data.',
+                  features: ['SOC 2 Type II', 'End-to-end encryption', 'Data isolation'],
+                  color: 'emerald'
+                },
+                {
+                  icon: <Workflow className="h-6 w-6" />,
+                  title: 'Visual Workflow Builder',
+                  description: 'Drag-and-drop interface for designing complex agent workflows. Connect agents, set conditions, and create branching logic without writing code.',
+                  features: ['Visual canvas', 'Conditional logic', 'Branching workflows'],
+                  color: 'amber'
+                },
+                {
+                  icon: <Globe className="h-6 w-6" />,
+                  title: 'API & Integrations',
+                  description: 'Connect with 100+ tools including Slack, Notion, CRMs, and more. Our REST API lets you trigger swarms from anywhere.',
+                  features: ['REST API', '100+ integrations', 'Webhook support'],
+                  color: 'rose'
+                },
+                {
+                  icon: <Shield className="h-6 w-6" />,
+                  title: 'Human-in-the-Loop',
+                  description: 'Set approval gates and manual checkpoints for critical decisions. The swarm pauses and notifies you when human input is needed.',
+                  features: ['Approval gates', 'Manual checkpoints', 'Smart notifications'],
+                  color: 'cyan'
+                }
+              ].map((feature, idx) => (
+                <AnimatedSection key={idx} delay={idx * 50}>
+                  <Card variant="feature" className="h-full">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
                       feature.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
                       feature.color === 'purple' ? 'bg-purple-500/10 text-purple-400' :
-                      feature.color === 'amber' ? 'bg-amber-500/10 text-amber-400' :
                       feature.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
+                      feature.color === 'amber' ? 'bg-amber-500/10 text-amber-400' :
                       'bg-rose-500/10 text-rose-400'
                     }`}>
                       {feature.icon}
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-slate-400 mb-5 leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <h3 className="text-lg font-semibold text-white mb-3">{feature.title}</h3>
+                    <p className="text-slate-400 text-sm mb-4 leading-relaxed">{feature.description}</p>
                     <ul className="space-y-2">
-                      {feature.highlights.map((highlight) => (
-                        <li key={highlight} className="flex items-center gap-2 text-sm text-slate-500">
-                          <Check className={`h-4 w-4 flex-shrink-0 ${
-                            feature.color === 'cyan' ? 'text-cyan-400' :
-                            feature.color === 'purple' ? 'text-purple-400' :
-                            feature.color === 'amber' ? 'text-amber-400' :
-                            feature.color === 'emerald' ? 'text-emerald-400' :
-                            'text-rose-400'
-                          }`} />
-                          {highlight}
+                      {feature.features.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2 text-sm text-slate-300">
+                          <Check className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                          {item}
                         </li>
                       ))}
                     </ul>
@@ -280,161 +172,178 @@ export default function Features() {
           </div>
         </section>
 
-        {/* Capabilities Grid */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <AnimatedSection delay={100} className="text-center mb-16">
-              <Badge variant="emerald" className="mb-4">Capabilities</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Powerful capabilities
-              </h2>
-              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                Advanced features that make SwarmForge the platform of choice for AI automation.
-              </p>
-            </AnimatedSection>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {capabilities.map((capability, idx) => (
-                <AnimatedSection key={capability.title} delay={150 + idx * 50}>
-                  <Card variant="glass" className="h-full hover:border-slate-600/50 transition-colors">
-                    <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-4">
-                      {capability.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{capability.title}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">{capability.description}</p>
-                  </Card>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Feature Deep Dive - Visual Builder */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-spotlight">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <AnimatedSection delay={100}>
-                <Badge variant="cyan" className="mb-4">Visual Builder</Badge>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  Design workflows visually
-                </h2>
-                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                  Our drag-and-drop interface makes it easy to design complex agent workflows. 
-                  Connect nodes, set conditions, and visualize how your swarm operates—all 
-                  without writing a single line of code.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  {[
-                    'Intuitive drag-and-drop canvas',
-                    'Real-time collaboration with your team',
-                    'Pre-built templates to get started fast',
-                    'Version control for your workflows'
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-slate-300">
-                      <div className="w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                        <Check className="h-4 w-4 text-cyan-400" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/builder" className="btn-primary">
-                  Try the Builder
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </AnimatedSection>
-              <AnimatedSection delay={200}>
-                <Card variant="glass" className="relative overflow-hidden aspect-square lg:aspect-[4/3]">
-                  {/* Mock Visual Builder UI */}
-                  <div className="absolute inset-0 bg-slate-900/50 p-6">
-                    <div className="h-full border-2 border-dashed border-slate-700 rounded-xl p-4 relative">
-                      {/* Mock Nodes */}
-                      <div className="absolute top-8 left-8 w-32 p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <Bot className="h-4 w-4 text-cyan-400" />
-                          <span className="text-sm text-cyan-400">Researcher</span>
-                        </div>
-                      </div>
-                      <div className="absolute top-8 right-8 w-32 p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <Sparkles className="h-4 w-4 text-purple-400" />
-                          <span className="text-sm text-purple-400">Writer</span>
-                        </div>
-                      </div>
-                      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-32 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-emerald-400" />
-                          <span className="text-sm text-emerald-400">Output</span>
-                        </div>
-                      </div>
-                      {/* Connection Lines */}
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                        <line x1="140" y1="40" x2="60%" y2="40" stroke="#22d3ee" strokeWidth="2" strokeDasharray="5,5" />
-                        <line x1="50%" y1="60" x2="50%" y2="70%" stroke="#22d3ee" strokeWidth="2" strokeDasharray="5,5" />
-                      </svg>
-                    </div>
-                  </div>
-                </Card>
-              </AnimatedSection>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Preview */}
+        {/* How It Works */}
         <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <AnimatedSection delay={100} className="text-center mb-16">
-              <Badge variant="amber" className="mb-4">Pricing</Badge>
+            <div className="text-center mb-16">
+              <Badge variant="purple" className="mb-4">How It Works</Badge>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Simple, transparent pricing
+                From Idea to Execution
               </h2>
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                Start free and scale as you grow. No hidden fees, no surprises.
+                Describe what you need. Our AI builds the optimal agent team.
               </p>
-            </AnimatedSection>
+            </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {tiers.map((tier, idx) => (
-                <AnimatedSection key={tier.name} delay={150 + idx * 100}>
-                  <Card 
-                    variant={tier.popular ? 'popular' : 'pricing'} 
-                    className="h-full relative"
-                  >
-                    {tier.popular && (
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                        <Badge variant="cyan">Most Popular</Badge>
+            <div className="grid md:grid-cols-3 gap-8 relative">
+              {/* Connecting Line */}
+              <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0" />
+              
+              {[
+                {
+                  icon: <Sparkles className="h-8 w-8" />,
+                  title: 'Describe Your Goal',
+                  description: 'Tell SwarmForge what you need in plain English. No coding required. Our AI understands your objectives and constraints.',
+                  color: 'cyan'
+                },
+                {
+                  icon: <Bot className="h-8 w-8" />,
+                  title: 'AI Builds Your Swarm',
+                  description: 'We automatically generate the optimal agent team, assign roles, and configure the workflow for maximum efficiency.',
+                  color: 'purple'
+                },
+                {
+                  icon: <Gauge className="h-8 w-8" />,
+                  title: 'Deploy & Monitor',
+                  description: 'Run your swarm, monitor progress in real-time, and get results. Iterate and refine based on performance.',
+                  color: 'emerald'
+                }
+              ].map((step, idx) => (
+                <AnimatedSection key={idx} delay={idx * 100}>
+                  <div className="text-center relative">
+                    <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
+                      <div className={`${
+                        step.color === 'cyan' ? 'text-cyan-400' :
+                        step.color === 'purple' ? 'text-purple-400' :
+                        'text-emerald-400'
+                      }`}>
+                        {step.icon}
                       </div>
-                    )}
-                    <div className="mb-6 pt-2">
-                      <h3 className="text-xl font-semibold text-white mb-2">{tier.name}</h3>
-                      <p className="text-slate-400 text-sm">{tier.description}</p>
                     </div>
-                    <ul className="space-y-3 mb-8">
-                      {tier.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-3 text-slate-300">
-                          <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                            tier.popular ? 'bg-cyan-500/20' : 'bg-emerald-500/20'
-                          }`}>
-                            <Check className={`h-3 w-3 ${tier.popular ? 'text-cyan-400' : 'text-emerald-400'}`} />
-                          </div>
-                          <span className="text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link 
-                      href="/pricing" 
-                      className={`block w-full text-center py-3 rounded-xl font-semibold transition-all ${
-                        tier.popular 
-                          ? 'bg-cyan-500 hover:bg-cyan-400 text-white' 
-                          : 'bg-slate-800 hover:bg-slate-700 text-white'
-                      }`}
-                    >
-                      Learn More
-                    </Link>
+                    <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
+                      {idx + 1}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                    <p className="text-slate-400">{step.description}</p>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Additional Capabilities */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30 border-y border-slate-800/50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge variant="emerald" className="mb-4">Additional Capabilities</Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                More Powerful Features
+              </h2>
+              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                Everything you need to build production-ready AI automations.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: <Layers className="h-6 w-6" />,
+                  title: 'Pre-Built Templates',
+                  description: 'Start with battle-tested swarm templates for common business workflows. Customize them to fit your specific needs.',
+                  color: 'cyan'
+                },
+                {
+                  icon: <MessageSquare className="h-6 w-6" />,
+                  title: 'Natural Language Interface',
+                  description: 'Build and modify swarms using plain English. No technical knowledge required. Our AI translates your intent into working systems.',
+                  color: 'purple'
+                },
+                {
+                  icon: <Clock className="h-6 w-6" />,
+                  title: 'Scheduled Executions',
+                  description: 'Set up recurring swarms that run on your schedule. Daily reports, weekly audits, or monthly analyses — all automated.',
+                  color: 'emerald'
+                },
+                {
+                  icon: <Code className="h-6 w-6" />,
+                  title: 'Custom Code Support',
+                  description: 'For advanced users, inject custom Python or JavaScript code into any agent. Extend capabilities beyond the built-in tools.',
+                  color: 'amber'
+                }
+              ].map((capability, idx) => (
+                <AnimatedSection key={idx} delay={idx * 100}>
+                  <Card variant="glass" className="h-full">
+                    <div className="flex items-start gap-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        capability.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
+                        capability.color === 'purple' ? 'bg-purple-500/10 text-purple-400' :
+                        capability.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
+                        'bg-amber-500/10 text-amber-400'
+                      }`}>
+                        {capability.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-2">{capability.title}</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">{capability.description}</p>
+                      </div>
+                    </div>
                   </Card>
                 </AnimatedSection>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Comparison Section */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge variant="rose" className="mb-4">Why SwarmForge?</Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                The Better Way to Automate
+              </h2>
+              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                See how SwarmForge compares to traditional automation tools.
+              </p>
+            </div>
+
+            <Card variant="glass" className="overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-slate-700">
+                      <th className="text-left py-4 px-6 text-slate-400 font-medium">Feature</th>
+                      <th className="text-center py-4 px-6 text-slate-400 font-medium">Traditional Tools</th>
+                      <th className="text-center py-4 px-6 text-cyan-400 font-semibold">SwarmForge</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { feature: 'Setup Time', traditional: 'Days or weeks', swarmforge: 'Minutes' },
+                      { feature: 'Coding Required', traditional: 'Yes, extensive', swarmforge: 'No code needed' },
+                      { feature: 'AI-Powered', traditional: 'Limited or none', swarmforge: 'Native AI agents' },
+                      { feature: 'Multi-Step Workflows', traditional: 'Complex to build', swarmforge: 'Natural language' },
+                      { feature: 'Error Handling', traditional: 'Manual configuration', swarmforge: 'Automatic retry & recovery' },
+                      { feature: 'Scaling', traditional: 'Infrastructure needed', swarmforge: 'Serverless & instant' },
+                      { feature: 'Monitoring', traditional: 'Separate tools', swarmforge: 'Built-in real-time' },
+                      { feature: 'Cost', traditional: 'High upfront + maintenance', swarmforge: 'Pay per use' },
+                    ].map((row, idx) => (
+                      <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/20 transition-colors">
+                        <td className="py-4 px-6 text-slate-300">{row.feature}</td>
+                        <td className="py-4 px-6 text-center text-slate-500">{row.traditional}</td>
+                        <td className="py-4 px-6 text-center">
+                          <span className="inline-flex items-center gap-2 text-emerald-400">
+                            <Check className="h-4 w-4" />
+                            {row.swarmforge}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
           </div>
         </section>
 
@@ -446,23 +355,25 @@ export default function Features() {
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
               
               <div className="relative">
-                <div className="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Sparkles className="h-8 w-8 text-cyan-400" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Ready to build your first swarm?
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  Ready to Experience the Future?
                 </h2>
                 <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-                  Join thousands of teams already using SwarmForge to automate their workflows 
-                  and scale their operations with AI.
+                  Join thousands of teams already automating their workflows with AI agent swarms.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/dashboard" className="btn-primary text-lg py-4 px-8">
+                  <Link 
+                    href="/dashboard" 
+                    className="btn-primary text-lg"
+                  >
                     Get Started Free
                     <ArrowRight className="h-5 w-5" />
                   </Link>
-                  <Link href="/docs" className="btn-secondary text-lg py-4 px-8">
-                    Read the Docs
+                  <Link 
+                    href="/pricing" 
+                    className="btn-secondary text-lg"
+                  >
+                    View Pricing
                   </Link>
                 </div>
               </div>
@@ -473,5 +384,5 @@ export default function Features() {
         <Footer />
       </div>
     </div>
-  );
+  )
 }
