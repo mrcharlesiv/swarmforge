@@ -1,6 +1,6 @@
 # SwarmForge Project State
 
-**Last Updated:** 2026-02-01 11:40 PM CST  
+**Last Updated:** 2026-02-02 8:15 AM CST  
 **Site:** https://mrcharlesiv.github.io/swarmforge/  
 **Repo:** mrcharlesiv/swarmforge
 
@@ -47,6 +47,9 @@
 | swarmforge-waitlist-fix | ✅ COMPLETE | Added waitlist form |
 | swarmforge-perf-v2 | ✅ COMPLETE | Performance optimizations |
 | swarmforge-testing | ✅ COMPLETE | QA audit & TEST_RESULTS.md |
+| swarmforge-fix-rsc-404 | ✅ COMPLETE | Fixed 404 errors |
+| swarmforge-waitlist-verify | 🔄 ACTIVE | Verifying waitlist form E2E |
+| swarmforge-final-qa | 🔄 ACTIVE | Final QA pass to A-grade |
 
 ## Next Tasks Queue
 
