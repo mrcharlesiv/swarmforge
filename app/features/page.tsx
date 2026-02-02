@@ -23,30 +23,7 @@ import { Navbar } from '@/app/components/navbar'
 import { Footer } from '@/app/components/footer'
 import { Card } from '@/app/components/ui/card'
 import { Badge } from '@/app/components/ui/badge'
-
-// Animation wrapper component
-function AnimatedSection({ 
-  children, 
-  className = '',
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <div 
-      className={`transition-all duration-700 ease-out ${className}`}
-      style={{ 
-        opacity: 1,
-        transform: 'translateY(0)',
-        transitionDelay: `${delay}ms`
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/scroll-reveal'
 
 export default function Features() {
   const features = [
@@ -102,38 +79,40 @@ export default function Features() {
         {/* Header */}
         <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="cyan" className="mb-6">
-              Features
-            </Badge>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Everything You Need to
-              <span className="gradient-text"> Build Agent Swarms</span>
-            </h1>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-              Powerful tools for building, deploying, and managing autonomous AI agent teams that work together to complete complex tasks.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/dashboard" 
-                className="btn-primary text-lg py-4 px-8"
-              >
-                Start Building Free
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-              <Link 
-                href="/templates" 
-                className="btn-secondary text-lg py-4 px-8"
-              >
-                View Templates
-              </Link>
-            </div>
+            <ScrollReveal>
+              <Badge variant="cyan" className="mb-6">
+                Features
+              </Badge>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+                Everything You Need to
+                <span className="gradient-text"> Build Agent Swarms</span>
+              </h1>
+              <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                Powerful tools for building, deploying, and managing autonomous AI agent teams that work together to complete complex tasks.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link 
+                  href="/dashboard" 
+                  className="btn-primary text-lg py-4 px-8 touch-feedback"
+                >
+                  Start Building Free
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link 
+                  href="/templates" 
+                  className="btn-secondary text-lg py-4 px-8 touch-feedback"
+                >
+                  View Templates
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
         {/* Features Grid */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30 border-y border-slate-800/50">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+            <ScrollReveal className="text-center mb-16">
               <Badge variant="purple" className="mb-4">
                 Platform Features
               </Badge>
@@ -143,12 +122,12 @@ export default function Features() {
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
                 Enterprise-grade infrastructure meets intuitive design.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature, idx) => (
-                <AnimatedSection key={feature.title} delay={idx * 50}>
-                  <div className="card-feature cursor-pointer h-full">
+            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
+              {features.map((feature) => (
+                <StaggerItem key={feature.title}>
+                  <div className="card-feature cursor-pointer h-full touch-feedback">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 text-cyan-400">
                       {feature.icon}
                     </div>
@@ -159,16 +138,16 @@ export default function Features() {
                       {feature.description}
                     </p>
                   </div>
-                </AnimatedSection>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* How It Works */}
         <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+            <ScrollReveal className="text-center mb-16">
               <Badge variant="emerald" className="mb-4">
                 How It Works
               </Badge>
@@ -178,62 +157,64 @@ export default function Features() {
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
                 Describe what you need. Our AI builds the optimal agent team.
               </p>
-            </div>
+            </ScrollReveal>
 
             <div className="grid md:grid-cols-3 gap-8 relative">
               {/* Connecting line */}
               <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0" />
               
-              <AnimatedSection delay={0}>
-                <div className="text-center relative">
-                  <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
-                    <Sparkles className="h-8 w-8 text-cyan-400" />
+              <StaggerContainer className="contents" staggerDelay={0.15}>
+                <StaggerItem>
+                  <div className="text-center relative">
+                    <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
+                      <Sparkles className="h-8 w-8 text-cyan-400" />
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
+                      1
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      Describe Your Goal
+                    </h3>
+                    <p className="text-slate-400">
+                      Tell SwarmForge what you need in plain English. No coding required.
+                    </p>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
-                    1
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    Describe Your Goal
-                  </h3>
-                  <p className="text-slate-400">
-                    Tell SwarmForge what you need in plain English. No coding required.
-                  </p>
-                </div>
-              </AnimatedSection>
+                </StaggerItem>
 
-              <AnimatedSection delay={100}>
-                <div className="text-center relative">
-                  <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
-                    <Bot className="h-8 w-8 text-purple-400" />
+                <StaggerItem>
+                  <div className="text-center relative">
+                    <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
+                      <Bot className="h-8 w-8 text-purple-400" />
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
+                      2
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      AI Builds Your Swarm
+                    </h3>
+                    <p className="text-slate-400">
+                      We automatically generate the optimal agent team and workflow.
+                    </p>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
-                    2
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    AI Builds Your Swarm
-                  </h3>
-                  <p className="text-slate-400">
-                    We automatically generate the optimal agent team and workflow.
-                  </p>
-                </div>
-              </AnimatedSection>
+                </StaggerItem>
 
-              <AnimatedSection delay={200}>
-                <div className="text-center relative">
-                  <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
-                    <Gauge className="h-8 w-8 text-emerald-400" />
+                <StaggerItem>
+                  <div className="text-center relative">
+                    <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
+                      <Gauge className="h-8 w-8 text-emerald-400" />
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
+                      3
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      Deploy & Monitor
+                    </h3>
+                    <p className="text-slate-400">
+                      Run your swarm, monitor progress, and get results.
+                    </p>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
-                    3
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    Deploy & Monitor
-                  </h3>
-                  <p className="text-slate-400">
-                    Run your swarm, monitor progress, and get results.
-                  </p>
-                </div>
-              </AnimatedSection>
+                </StaggerItem>
+              </StaggerContainer>
             </div>
           </div>
         </section>
@@ -241,7 +222,7 @@ export default function Features() {
         {/* Additional Features */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30 border-y border-slate-800/50">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+            <ScrollReveal className="text-center mb-16">
               <Badge variant="amber" className="mb-4">
                 Additional Capabilities
               </Badge>
@@ -251,11 +232,11 @@ export default function Features() {
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
                 Everything you need to build production-ready AI automations.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <AnimatedSection delay={0}>
-                <div className="card-glass h-full">
+            <StaggerContainer className="grid md:grid-cols-2 gap-8" staggerDelay={0.1}>
+              <StaggerItem>
+                <div className="card-glass h-full touch-feedback">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-cyan-500/10 text-cyan-400">
                       <Clock className="h-6 w-6" />
@@ -270,10 +251,10 @@ export default function Features() {
                     </div>
                   </div>
                 </div>
-              </AnimatedSection>
+              </StaggerItem>
 
-              <AnimatedSection delay={100}>
-                <div className="card-glass h-full">
+              <StaggerItem>
+                <div className="card-glass h-full touch-feedback">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-purple-500/10 text-purple-400">
                       <Globe className="h-6 w-6" />
@@ -288,10 +269,10 @@ export default function Features() {
                     </div>
                   </div>
                 </div>
-              </AnimatedSection>
+              </StaggerItem>
 
-              <AnimatedSection delay={200}>
-                <div className="card-glass h-full">
+              <StaggerItem>
+                <div className="card-glass h-full touch-feedback">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-emerald-500/10 text-emerald-400">
                       <Lock className="h-6 w-6" />
@@ -306,10 +287,10 @@ export default function Features() {
                     </div>
                   </div>
                 </div>
-              </AnimatedSection>
+              </StaggerItem>
 
-              <AnimatedSection delay={300}>
-                <div className="card-glass h-full">
+              <StaggerItem>
+                <div className="card-glass h-full touch-feedback">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-rose-500/10 text-rose-400">
                       <Zap className="h-6 w-6" />
@@ -324,34 +305,36 @@ export default function Features() {
                     </div>
                   </div>
                 </div>
-              </AnimatedSection>
-            </div>
+              </StaggerItem>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* CTA Banner - Standardized */}
         <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <Card variant="glass" className="relative overflow-hidden text-center p-10">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
-              
-              <div className="relative">
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Ready to Get Started?
-                </h2>
-                <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-                  Join thousands of teams already automating their workflows with SwarmForge.
-                </p>
-                <Link 
-                  href="/dashboard" 
-                  className="btn-primary text-lg"
-                >
-                  Get Started Free
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </div>
-            </Card>
+            <ScrollReveal>
+              <Card variant="glass" className="relative overflow-hidden text-center p-10">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
+                
+                <div className="relative">
+                  <h2 className="text-3xl font-bold text-white mb-4">
+                    Ready to Get Started?
+                  </h2>
+                  <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+                    Join thousands of teams already automating their workflows with SwarmForge.
+                  </p>
+                  <Link 
+                    href="/dashboard" 
+                    className="btn-primary text-lg touch-feedback"
+                  >
+                    Get Started Free
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </div>
+              </Card>
+            </ScrollReveal>
           </div>
         </section>
 

@@ -37,10 +37,9 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-slate-400 hover:text-white transition-colors relative group"
+                className="nav-link text-sm font-medium text-slate-400 hover:text-white transition-colors"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
