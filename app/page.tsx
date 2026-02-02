@@ -386,7 +386,7 @@ export default function LandingPage() {
               <Card variant="pricing" className="h-full">
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-white mb-2">Free</h3>
-                  <p className="text-slate-400 text-sm">Perfect for getting started</p>
+                  <p className="text-slate-400 text-sm">Perfect for exploring</p>
                 </div>
                 <div className="mb-8">
                   <span className="text-5xl font-bold text-white">$0</span>
@@ -399,6 +399,7 @@ export default function LandingPage() {
                     '5 pre-built templates',
                     'Basic analytics',
                     'Community support',
+                    'API access (limited)',
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-slate-300">
                       <Check className="h-5 w-5 text-cyan-400 flex-shrink-0" />
