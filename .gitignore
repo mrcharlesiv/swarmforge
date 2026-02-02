@@ -19,4 +19,4 @@ coverage
 
 # Temporary files
 *.tmp
-*.temp
+*.tempdist/
