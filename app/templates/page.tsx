@@ -84,12 +84,13 @@ export default function Templates() {
             </div>
 
             {/* Category Pills - Standardized */}
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter templates by category">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  aria-pressed={selectedCategory === category}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 touch-feedback focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                     selectedCategory === category
                       ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/25'
                       : 'bg-slate-800/50 border border-slate-700 text-slate-400 hover:text-white hover:border-slate-600'

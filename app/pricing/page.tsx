@@ -40,10 +40,11 @@ export default function Pricing() {
               </p>
 
               {/* Billing Toggle - Standardized */}
-              <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-slate-800/50 border border-slate-700/50">
+              <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-slate-800/50 border border-slate-700/50" role="group" aria-label="Select billing cycle">
                 <button
                   onClick={() => setIsAnnual(false)}
-                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 touch-feedback ${
+                  aria-pressed={!isAnnual}
+                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 touch-feedback focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                     !isAnnual 
                       ? 'bg-slate-700 text-white' 
                       : 'text-slate-400 hover:text-white'
@@ -53,7 +54,8 @@ export default function Pricing() {
                 </button>
                 <button
                   onClick={() => setIsAnnual(true)}
-                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 touch-feedback ${
+                  aria-pressed={isAnnual}
+                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 touch-feedback focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                     isAnnual 
                       ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/25' 
                       : 'text-slate-400 hover:text-white'

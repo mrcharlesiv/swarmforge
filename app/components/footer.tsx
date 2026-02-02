@@ -59,8 +59,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              <Sparkles className="h-6 w-6 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-lg w-fit" aria-label="SwarmForge - Home">
+              <Sparkles className="h-6 w-6 text-cyan-400 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
               <span className="text-lg font-bold text-white">
                 Swarm<span className="text-cyan-400">Forge</span>
               </span>
@@ -71,25 +71,29 @@ export function Footer() {
             {/* Newsletter */}
             <form onSubmit={handleSubscribe} className="flex gap-2">
               <div className="relative flex-1">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" aria-hidden="true" />
+                <label htmlFor="footer-email" className="sr-only">Email address</label>
                 <input
+                  id="footer-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   disabled={status === 'loading' || status === 'success'}
-                  className="w-full pl-9 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="w-full pl-9 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  aria-label="Subscribe to newsletter"
                 />
               </div>
               <button 
                 type="submit"
                 disabled={status === 'loading' || status === 'success' || !email.trim()}
-                className="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2"
+                className="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                aria-label={status === 'loading' ? 'Subscribing...' : status === 'success' ? 'Subscribed' : 'Subscribe to newsletter'}
               >
                 {status === 'loading' ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                 ) : status === 'success' ? (
-                  <CheckCircle className="h-4 w-4" />
+                  <CheckCircle className="h-4 w-4" aria-hidden="true" />
                 ) : (
                   'Subscribe'
                 )}
@@ -101,57 +105,57 @@ export function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div>
+          <nav aria-label="Product links">
             <h4 className="text-white font-semibold mb-4 text-sm">Product</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded px-1">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <nav aria-label="Resources links">
             <h4 className="text-white font-semibold mb-4 text-sm">Resources</h4>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded px-1">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <nav aria-label="Company links">
             <h4 className="text-white font-semibold mb-4 text-sm">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded px-1">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <nav aria-label="Legal links">
             <h4 className="text-white font-semibold mb-4 text-sm">Legal</h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors">
+                  <Link href={link.href} className="text-slate-400 hover:text-cyan-400 text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded px-1">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}
@@ -166,10 +170,10 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 rounded-lg transition-all"
-                aria-label={social.label}
+                className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 rounded-lg transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                aria-label={`Visit our ${social.label} page (opens in new tab)`}
               >
-                <social.icon className="h-5 w-5" />
+                <social.icon className="h-5 w-5" aria-hidden="true" />
               </a>
             ))}
           </div>

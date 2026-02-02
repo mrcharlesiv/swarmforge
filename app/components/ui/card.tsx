@@ -25,13 +25,17 @@ export function Card({
     glass: 'card-glass',
   };
 
+  const isInteractive = hover && (variant === 'feature' || variant === 'template');
+
   return (
     <div
       className={cn(
         variants[variant],
-        hover && (variant === 'feature' || variant === 'template') && 'cursor-pointer',
+        isInteractive && 'cursor-pointer focus-within:ring-2 focus-within:ring-cyan-400 focus-within:ring-offset-2 focus-within:ring-offset-slate-900',
         className
       )}
+      role={isInteractive ? 'article' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
     >
       {children}
     </div>

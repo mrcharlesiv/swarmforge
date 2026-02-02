@@ -7,7 +7,7 @@
    Premium SaaS Aesthetic - Grade A+
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Font loaded via next/font in layout.tsx for optimal performance */
 
 :root {
   /* Primary Palette - Cyan */
@@ -76,16 +76,29 @@
   }
   
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
     background-color: rgba(34, 211, 238, 0.3);
     color: white;
+  }
+  
+  /* Improved heading hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  
+  /* Consistent paragraph spacing */
+  p {
+    line-height: 1.7;
   }
 }
 
@@ -449,10 +462,19 @@
    ACCESSIBILITY ENHANCEMENTS
    ============================================ */
 
-/* Focus Visible Styles */
+/* Focus Visible Styles - Enhanced */
 *:focus-visible {
   outline: 2px solid #22d3ee;
   outline-offset: 2px;
+}
+
+/* Skip Link Enhancement */
+.skip-link {
+  @apply absolute -top-40 left-4 z-50 px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg transition-all duration-200;
+}
+
+.skip-link:focus {
+  @apply top-4;
 }
 
 /* Skip to content link */
@@ -652,7 +674,7 @@ a:focus-visible {
   }
 }
 
-/* Reduced Motion */
+/* Reduced Motion - Enhanced */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -660,6 +682,14 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-spin-slow,
+  .animate-shimmer {
+    animation: none !important;
   }
 }
 
@@ -892,13 +922,50 @@ input:focus-visible {
   background: #4b5563;
 }
 
-/* Touch Feedback for Mobile */
+/* Touch Feedback for Mobile - Enhanced */
 @media (hover: none) {
   .btn-primary:active,
   .btn-secondary:active,
   .card-feature:active,
-  .card-template:active {
-    transform: scale(0.98);
+  .card-template:active,
+  .touch-feedback:active {
+    transform: scale(0.97);
     transition-duration: 0.1s;
+  }
+  
+  .card-feature:hover,
+  .card-template:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid white;
+  }
+  
+  .btn-secondary {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  *:focus-visible {
+    outline: 3px solid #22d3ee;
+    outline-offset: 3px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navbar-glass,
+  .scroll-to-top,
+  canvas {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
   }
 }

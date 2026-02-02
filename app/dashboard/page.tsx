@@ -172,36 +172,40 @@ export default function Dashboard() {
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {error && (
-                    <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-3">
-                      <AlertCircle className="h-5 w-5 text-rose-400 flex-shrink-0" />
+                    <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-3" role="alert" aria-live="assertive">
+                      <AlertCircle className="h-5 w-5 text-rose-400 flex-shrink-0" aria-hidden="true" />
                       <p className="text-rose-400 text-sm">{error}</p>
                     </div>
                   )}
                   <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" aria-hidden="true" />
+                    <label htmlFor="dashboard-email" className="sr-only">Email address</label>
                     <input
+                      id="dashboard-email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       className="input-primary pl-12 text-base"
                       required
+                      aria-describedby={error ? 'dashboard-error' : undefined}
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full btn-primary justify-center disabled:opacity-50"
+                    className="w-full btn-primary justify-center disabled:opacity-50 touch-feedback"
+                    aria-label={loading ? 'Joining waitlist...' : 'Join waitlist'}
                   >
                     {loading ? (
                       <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
+                        <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
                         Joining...
                       </>
                     ) : (
                       <>
                         Join Waitlist
-                        <ArrowRight className="h-5 w-5" />
+                        <ArrowRight className="h-5 w-5" aria-hidden="true" />
                       </>
                     )}
                   </button>
@@ -212,20 +216,20 @@ export default function Dashboard() {
                 </p>
               </>
             ) : (
-              <div className="text-center py-8 relative">
+              <div className="text-center py-8 relative" role="status" aria-live="polite">
                 <Confetti />
                 <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6 animate-scale-in">
-                  <CheckCircle className="h-10 w-10 text-emerald-400" />
+                  <CheckCircle className="h-10 w-10 text-emerald-400" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">You're on the list!</h3>
                 <p className="text-slate-400 mb-6">
                   We'll email you when SwarmForge is ready. Thanks for your interest!
                 </p>
                 <div className="flex gap-3 justify-center">
-                  <Link href="/templates" className="btn-secondary text-sm">
+                  <Link href="/templates" className="btn-secondary text-sm touch-feedback">
                     Explore Templates
                   </Link>
-                  <Link href="/" className="btn-ghost text-sm">
+                  <Link href="/" className="btn-ghost text-sm touch-feedback">
                     Back Home
                   </Link>
                 </div>

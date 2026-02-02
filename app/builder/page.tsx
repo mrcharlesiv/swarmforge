@@ -190,26 +190,32 @@ export default function Builder() {
             </div>
             
             {/* Step Indicator */}
-            <div className="flex items-center gap-2">
-              {[1, 2, 3].map((s, idx) => (
-                <div key={s} className="flex items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
-                    step > s 
-                      ? 'bg-emerald-500 text-white' 
-                      : step === s 
-                        ? 'bg-cyan-500 text-white' 
-                        : 'bg-slate-800 text-slate-500 border border-slate-700'
-                  }`}>
-                    {step > s ? <Check className="h-4 w-4" /> : s}
-                  </div>
-                  {idx < 2 && (
-                    <div className={`w-8 h-0.5 mx-1 transition-all duration-300 ${
-                      step > s ? 'bg-emerald-500' : 'bg-slate-800'
-                    }`} />
-                  )}
-                </div>
-              ))}
-            </div>
+            <nav aria-label="Builder progress">
+              <ol className="flex items-center gap-2">
+                {[1, 2, 3].map((s, idx) => (
+                  <li key={s} className="flex items-center">
+                    <div 
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
+                        step > s 
+                          ? 'bg-emerald-500 text-white' 
+                          : step === s 
+                            ? 'bg-cyan-500 text-white' 
+                            : 'bg-slate-800 text-slate-500 border border-slate-700'
+                      }`}
+                      aria-current={step === s ? 'step' : undefined}
+                      aria-label={`Step ${s}${step > s ? ' - Completed' : step === s ? ' - Current' : ' - Pending'}`}
+                    >
+                      {step > s ? <Check className="h-4 w-4" aria-hidden="true" /> : s}
+                    </div>
+                    {idx < 2 && (
+                      <div className={`w-8 h-0.5 mx-1 transition-all duration-300 ${
+                        step > s ? 'bg-emerald-500' : 'bg-slate-800'
+                      }`} aria-hidden="true" />
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
@@ -285,12 +291,14 @@ export default function Builder() {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8" role="radiogroup" aria-label="Select a template">
               {templates.map((template, idx) => (
                 <button
                   key={template.id}
                   onClick={() => setSelectedTemplate(template.id)}
-                  className={`text-left p-5 rounded-xl border transition-all duration-200 ${
+                  role="radio"
+                  aria-checked={selectedTemplate === template.id}
+                  className={`text-left p-5 rounded-xl border transition-all duration-200 touch-feedback focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                     selectedTemplate === template.id 
                       ? 'border-cyan-500 bg-cyan-500/10' 
                       : 'border-slate-700 bg-slate-800/50 hover:border-slate-600 hover:bg-slate-800'
@@ -311,7 +319,7 @@ export default function Builder() {
                   
                   {selectedTemplate === template.id && (
                     <div className="mt-3 flex items-center gap-2 text-cyan-400 text-sm">
-                      <Check className="h-4 w-4" />
+                      <Check className="h-4 w-4" aria-hidden="true" />
                       <span>Selected</span>
                     </div>
                   )}
