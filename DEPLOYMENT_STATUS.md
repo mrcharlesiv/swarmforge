@@ -1,133 +1,91 @@
-# SwarmForge - Deployment Status Report
+# SwarmForge Deployment Status Report
 
-**Timestamp:** 2026-02-01 6:55 PM CST  
-**Status:** 🟡 DEPLOYMENT IN PROGRESS
+**Generated:** February 1, 2026 at 6:46 PM CST  
+**Status:** 🔄 IN PROGRESS
 
----
+## Deployment Summary
 
-## ✅ COMPLETED
+| Component | Status | URL |
+|-----------|--------|-----|
+| SwarmForge App | 🔄 Building | https://mrcharlesiv.github.io/swarmforge |
+| Deployment Dashboard | ✅ Live | https://mrcharlesiv.github.io/swarmforge-dashboard |
+| GitHub Repository | ✅ Ready | https://github.com/mrcharlesiv/swarmforge |
+| Supabase Project | ⚠️ Schema Pending | https://app.supabase.com/project/ugnjzsxiyrbzwopundfs |
 
-### 1. Codebase
-- ✅ Next.js 14 app with all pages (Landing, Dashboard, Builder, Pricing, Templates)
-- ✅ Pre-launch mode: Waitlist form instead of Stripe checkout
-- ✅ Supabase integration configured
-- ✅ All environment variables set
+## Completed Steps
 
-### 2. GitHub Repository
-- ✅ Repo: https://github.com/mrcharlesiv/swarmforge
-- ✅ GitHub Actions workflow for auto-deploy
-- ✅ Secrets configured:
-  - NEXT_PUBLIC_SUPABASE_URL
-  - NEXT_PUBLIC_SUPABASE_ANON_KEY
-  - SUPABASE_SERVICE_ROLE_KEY
+1. ✅ **Schema Prepared** - `infra/full-schema.sql` created with:
+   - Waitlist table for pre-launch signups
+   - Swarms, Runs, Subscriptions, Usage tables
+   - RLS policies for security
+   - Indexes for performance
 
-### 3. Mission Control Dashboard
-- ✅ Dashboard Agent created
-- ✅ Real-time progress tracking
-- ✅ Waitlist counter, deployment status, feature checklist
+2. ✅ **GitHub Secrets Configured**:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-### 4. Build Status
-- ✅ Last build: SUCCESS (30s build, 11s deploy)
-- ✅ Artifact: github-pages created
+3. ✅ **Pre-launch Modifications**:
+   - Stripe checkout disabled (returns 503)
+   - Webhook handler disabled
+   - Pricing page shows "Coming Soon"
+   - Dashboard shows waitlist form
+   - Hero CTA changed to "Join Waitlist"
 
----
+4. ✅ **Code Committed & Pushed**:
+   - BasePath fix added for GitHub Pages
+   - All changes pushed to `main` branch
 
-## 🔧 PENDING (Manual Step Required)
+5. 🔄 **GitHub Actions Running**:
+   - Workflow: Deploy to GitHub Pages
+   - Build output: `dist/` directory
+   - Auto-deploy on push to main
 
-### GitHub Pages Configuration
-**Charles needs to:**
-1. Go to https://github.com/mrcharlesiv/swarmforge/settings/pages
-2. Change **Source** from "Deploy from a branch" to **"GitHub Actions"**
-3. Save
+## Manual Steps Required
 
-**Current setting:**
-```json
-{
-  "status": "built",
-  "source": {"branch": "main", "path": "/"},
-  "build_type": "legacy"
-}
-```
+### 1. Apply Database Schema
 
-**Needs to be:** GitHub Actions (workflow-based)
+The Supabase schema must be applied manually via the SQL Editor:
 
----
-
-## 🎯 EXPECTED URLS
-
-Once Pages is switched to GitHub Actions:
-
-| Resource | URL |
-|----------|-----|
-| **SwarmForge (Live)** | https://mrcharlesiv.github.io/swarmforge/ |
-| **Mission Control** | https://mrcharlesiv.github.io/swarmforge/dashboard.html |
-| **Repository** | https://github.com/mrcharlesiv/swarmforge |
-| **Actions** | https://github.com/mrcharlesiv/swarmforge/actions |
-
----
-
-## 📋 SUPABASE SETUP REQUIRED
-
-**Charles needs to run this SQL in Supabase Dashboard:**
-
-1. Go to: https://supabase.com/dashboard/project/ugnjzsxiyrbzwopundfs/sql
-2. Paste the contents of `infra/setup.sql`
-3. Click "Run"
-
-**Or run via curl:**
 ```bash
-curl -X POST 'https://ugnjzsxiyrbzwopundfs.supabase.co/rest/v1/rpc/exec_sql' \
-  -H "apikey: <anon-key>" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "CREATE TABLE IF NOT EXISTS waitlist (...)"}'
+# Navigate to:
+https://app.supabase.com/project/ugnjzsxiyrbzwopundfs/sql-editor
+
+# Paste contents of:
+/Users/bots/clawd/swarmforge/infra/full-schema.sql
+
+# Click "Run"
 ```
 
----
+### 2. Configure GitHub Pages (Dashboard)
 
-## 📊 FEATURES STATUS
+Dashboard repo: https://github.com/mrcharlesiv/swarmforge-dashboard
 
-| Feature | Status |
-|---------|--------|
-| Landing Page | ✅ Complete |
-| Waitlist Form | ✅ Complete (w/ Supabase) |
-| Dashboard UI | ✅ Complete |
-| Builder Wizard | ✅ Complete |
-| 5 Templates | ✅ Complete |
-| GitHub Actions | ✅ Complete |
-| Supabase Auth | 🟡 Configured, needs schema |
-| Database Tables | 🟡 SQL ready, needs execution |
-| Stripe Billing | 🔴 Post-launch feature |
+Already configured - may take 2-3 minutes to propagate.
 
----
+## URLs After Deployment
 
-## 🚀 LAUNCH CHECKLIST
+- **SwarmForge App:** https://mrcharlesiv.github.io/swarmforge
+- **Dashboard:** https://mrcharlesiv.github.io/swarmforge-dashboard
+- **Workflow Status:** https://github.com/mrcharlesiv/swarmforge/actions
 
-- [x] Code committed to GitHub
-- [x] GitHub Actions workflow configured
-- [x] Secrets added
-- [x] Build successful
-- [ ] **Charles: Switch Pages to GitHub Actions**
-- [ ] **Charles: Run SQL in Supabase**
-- [ ] Verify live URLs
-- [ ] Test waitlist signup
+## Testing Checklist
 
----
+- [ ] SwarmForge loads without 404
+- [ ] Homepage displays waitlist CTA
+- [ ] Pricing page shows "Coming Soon"
+- [ ] Dashboard shows waitlist form
+- [ ] Email signup stores data in Supabase (requires schema)
 
-## 📁 LOCAL PATH
+## Blockers
 
-```
-/Users/bots/clawd/swarmforge/
-├── app/page.tsx              # Landing
-├── app/dashboard/page.tsx    # Waitlist dashboard
-├── app/builder/page.tsx      # Swarm builder
-├── app/pricing/page.tsx      # Pricing
-├── app/templates/page.tsx    # Templates
-├── lib/supabase.ts           # Supabase client
-├── infra/setup.sql           # Database schema
-└── dashboard-agent/          # Mission Control
-```
+None currently. Deployment is in progress.
+
+## Credentials (for reference)
+
+- **Supabase URL:** `https://ugnjzsxiyrbzwopundfs.supabase.co`
+- **Anon Key:** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (truncated)
+- **Service Role:** Available in GitHub secrets
 
 ---
 
-**Built by AXIOM-PRIME Swarm Agent**  
-**Ready for final activation by Charles**
+**Next Update:** Dashboard auto-refreshes every 30 seconds
