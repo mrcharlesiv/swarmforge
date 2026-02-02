@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { 
   Sparkles, 
@@ -20,38 +20,8 @@ import { Navbar } from '@/app/components/navbar';
 import { Footer } from '@/app/components/footer';
 import { Card } from '@/app/components/ui/card';
 import { Badge } from '@/app/components/ui/badge';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/scroll-reveal';
 import { supabase } from '@/lib/supabase';
-
-// Animation wrapper component
-function AnimatedSection({ 
-  children, 
-  className = '',
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) {
-  const [isVisible, setIsVisible] = useState(true); // Start visible, then animate
-
-  useEffect(() => {
-    // Small delay for smooth entrance, but content is already visible
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  return (
-    <div 
-      className={`transition-all duration-700 ease-out ${className}`}
-      style={{
-        opacity: 1, // Always visible
-        transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
-      }}
-    >
-      {children}
-    </div>
-  );
-}
 
 // Floating shapes background
 function FloatingShapes() {
@@ -165,7 +135,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="relative pt-20 pb-32 overflow-hidden">
         <div className="container-custom relative z-10">
-          <AnimatedSection className="text-center max-w-4xl mx-auto">
+          <ScrollReveal className="text-center max-w-4xl mx-auto">
             <Badge variant="cyan" dot className="mb-8">
               Now in Public Beta
             </Badge>
@@ -189,7 +159,7 @@ export default function LandingPage() {
                     <button
                       type="submit"
                       disabled={status === 'loading'}
-                      className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold rounded-lg px-6 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold rounded-lg px-6 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-feedback"
                     >
                       {status === 'loading' ? 'Joining...' : 'Join Waitlist'}
                     </button>
@@ -217,33 +187,35 @@ export default function LandingPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link href="/dashboard" className="btn-primary text-lg py-4 px-8">
+              <Link href="/dashboard" className="btn-primary text-lg py-4 px-8 touch-feedback">
                 Start Building Free
                 <ArrowRight className="h-5 w-5" />
               </Link>
-              <Link href="/templates" className="btn-secondary text-lg py-4 px-8">
+              <Link href="/templates" className="btn-secondary text-lg py-4 px-8 touch-feedback">
                 <Play className="h-5 w-5" />
                 View Templates
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto" staggerDelay={0.1}>
               {stats.map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-sm text-slate-500">{stat.label}</div>
-                </div>
+                <StaggerItem key={idx}>
+                  <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-sm text-slate-500">{stat.label}</div>
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
-          </AnimatedSection>
+            </StaggerContainer>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Templates Section */}
       <section className="py-24 bg-gradient-spotlight">
         <div className="container-custom">
-          <AnimatedSection delay={100} className="text-center mb-16">
+          <ScrollReveal className="text-center mb-16">
             <Badge variant="purple" className="mb-4">Pre-Built Solutions</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Ready-to-Deploy Templates
@@ -251,14 +223,14 @@ export default function LandingPage() {
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Start with battle-tested swarm templates designed for common business workflows.
             </p>
-          </AnimatedSection>
+          </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {templates.map((template, idx) => (
-              <AnimatedSection key={template.id} delay={150 + idx * 50}>
-                <Card variant="template" className="h-full p-6 group">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
+            {templates.map((template) => (
+              <StaggerItem key={template.id}>
+                <Card variant="template" className="h-full p-6 group touch-feedback">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${
+                    <div className={`icon-wrapper w-12 h-12 rounded-xl flex items-center justify-center ${
                       template.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
                       template.color === 'purple' ? 'bg-purple-500/10 text-purple-400' :
                       template.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
@@ -282,23 +254,23 @@ export default function LandingPage() {
                     ))}
                   </div>
                 </Card>
-              </AnimatedSection>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <AnimatedSection delay={500} className="text-center mt-12">
-            <Link href="/templates" className="btn-secondary">
+          <ScrollReveal className="text-center mt-12" delay={0.3}>
+            <Link href="/templates" className="btn-secondary touch-feedback">
               Browse All Templates
               <ArrowRight className="h-4 w-4" />
             </Link>
-          </AnimatedSection>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="py-24">
         <div className="container-custom">
-          <AnimatedSection delay={100} className="text-center mb-16">
+          <ScrollReveal className="text-center mb-16">
             <Badge variant="emerald" className="mb-4">Simple Process</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               How It Works
@@ -306,27 +278,29 @@ export default function LandingPage() {
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               From idea to deployed swarm in minutes, not days.
             </p>
-          </AnimatedSection>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
             {/* Connecting Line */}
             <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0" />
             
-            {features.map((feature, idx) => (
-              <AnimatedSection key={idx} delay={200 + idx * 100}>
-                <div className="text-center relative">
-                  <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
-                    <div className="absolute inset-0 bg-cyan-500/5 rounded-2xl animate-pulse" />
-                    {feature.icon}
+            <StaggerContainer className="contents" staggerDelay={0.15}>
+              {features.map((feature, idx) => (
+                <StaggerItem key={idx}>
+                  <div className="text-center relative">
+                    <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-700 relative z-10">
+                      <div className="absolute inset-0 bg-cyan-500/5 rounded-2xl animate-pulse" />
+                      {feature.icon}
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
+                      {idx + 1}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                    <p className="text-slate-400">{feature.description}</p>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-sm mx-auto mb-4 relative z-10">
-                    {idx + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                  <p className="text-slate-400">{feature.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
           </div>
         </div>
       </section>
@@ -334,7 +308,7 @@ export default function LandingPage() {
       {/* Features Grid */}
       <section className="py-24 bg-gradient-spotlight">
         <div className="container-custom">
-          <AnimatedSection delay={100} className="text-center mb-16">
+          <ScrollReveal className="text-center mb-16">
             <Badge variant="amber" className="mb-4">Powerful Features</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Everything You Need
@@ -342,9 +316,9 @@ export default function LandingPage() {
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Built for teams that need reliable, scalable AI automation.
             </p>
-          </AnimatedSection>
+          </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
             {[
               { icon: <Bot className="h-6 w-6" />, title: 'Multi-Agent Collaboration', desc: 'Agents work together, share context, and coordinate tasks automatically.' },
               { icon: <Clock className="h-6 w-6" />, title: 'Real-Time Monitoring', desc: 'Watch your swarms work with live logs, progress bars, and status updates.' },
@@ -353,24 +327,24 @@ export default function LandingPage() {
               { icon: <Globe className="h-6 w-6" />, title: 'API & Integrations', desc: 'Connect with 100+ tools including Slack, Notion, and CRMs.' },
               { icon: <Shield className="h-6 w-6" />, title: 'Human-in-the-Loop', desc: 'Set approval gates and manual checkpoints for critical decisions.' },
             ].map((feature, idx) => (
-              <AnimatedSection key={idx} delay={150 + idx * 50}>
-                <Card variant="feature" className="h-full">
+              <StaggerItem key={idx}>
+                <Card variant="feature" className="h-full touch-feedback">
                   <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 mb-4">
                     {feature.icon}
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
                   <p className="text-slate-400 text-sm">{feature.desc}</p>
                 </Card>
-              </AnimatedSection>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Pricing Section */}
       <section className="py-24">
         <div className="container-custom">
-          <AnimatedSection delay={100} className="text-center mb-16">
+          <ScrollReveal className="text-center mb-16">
             <Badge variant="cyan" className="mb-4">Simple Pricing</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Start Free, Scale as You Grow
@@ -378,12 +352,12 @@ export default function LandingPage() {
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               No credit card required. Upgrade when you need more power.
             </p>
-          </AnimatedSection>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Free Tier */}
-            <AnimatedSection delay={200}>
-              <Card variant="pricing" className="h-full">
+            <ScrollReveal delay={0.1}>
+              <Card variant="pricing" className="h-full touch-feedback">
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-white mb-2">Free</h3>
                   <p className="text-slate-400 text-sm">Perfect for exploring</p>
@@ -407,15 +381,15 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/dashboard" className="block w-full text-center btn-secondary">
+                <Link href="/dashboard" className="block w-full text-center btn-secondary touch-feedback">
                   Get Started Free
                 </Link>
               </Card>
-            </AnimatedSection>
+            </ScrollReveal>
 
             {/* Pro Tier */}
-            <AnimatedSection delay={300}>
-              <Card variant="popular" className="h-full relative">
+            <ScrollReveal delay={0.2}>
+              <Card variant="popular" className="h-full relative touch-feedback">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <Badge variant="cyan">Most Popular</Badge>
                 </div>
@@ -445,11 +419,11 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/dashboard" className="block w-full text-center btn-primary">
+                <Link href="/dashboard" className="block w-full text-center btn-primary touch-feedback">
                   Start Pro Trial
                 </Link>
               </Card>
-            </AnimatedSection>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -458,7 +432,7 @@ export default function LandingPage() {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-cyan-500/10" />
         <div className="container-custom relative z-10">
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
+          <ScrollReveal className="text-center max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Build Your First Swarm?
             </h2>
@@ -466,15 +440,15 @@ export default function LandingPage() {
               Join thousands of teams using SwarmForge to automate their workflows.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/dashboard" className="btn-primary text-lg py-4 px-8">
+              <Link href="/dashboard" className="btn-primary text-lg py-4 px-8 touch-feedback">
                 Get Started Free
                 <ArrowRight className="h-5 w-5" />
               </Link>
-              <Link href="/builder" className="btn-secondary text-lg py-4 px-8">
+              <Link href="/builder" className="btn-secondary text-lg py-4 px-8 touch-feedback">
                 Try the Builder
               </Link>
             </div>
-          </AnimatedSection>
+          </ScrollReveal>
         </div>
       </section>
 

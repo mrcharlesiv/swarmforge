@@ -7,30 +7,7 @@ import { Navbar } from '@/app/components/navbar'
 import { Footer } from '@/app/components/footer'
 import { Card } from '@/app/components/ui/card'
 import { Badge } from '@/app/components/ui/badge'
-
-// Animation wrapper component
-function AnimatedSection({ 
-  children, 
-  className = '',
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <div 
-      className={`transition-all duration-700 ease-out ${className}`}
-      style={{ 
-        opacity: 1,
-        transform: 'translateY(0)',
-        transitionDelay: `${delay}ms`
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/scroll-reveal'
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(true)

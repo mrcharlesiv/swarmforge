@@ -23,30 +23,8 @@ import { Navbar } from '@/app/components/navbar'
 import { Footer } from '@/app/components/footer'
 import { Card } from '@/app/components/ui/card'
 import { Badge } from '@/app/components/ui/badge'
-
-// Animation wrapper component
-function AnimatedSection({ 
-  children, 
-  className = '',
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <div 
-      className={`transition-all duration-700 ease-out ${className}`}
-      style={{ 
-        opacity: 1,
-        transform: 'translateY(0)',
-        transitionDelay: `${delay}ms`
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/scroll-reveal'
+import { AnimatedSection } from '@/app/components/animated-section'
 
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -75,16 +53,18 @@ export default function Templates() {
         {/* Header */}
         <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="purple" className="mb-6">
-              Pre-Built Templates
-            </Badge>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Start with a
-              <span className="gradient-text"> Proven Blueprint</span>
-            </h1>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Choose from our library of battle-tested swarm templates, designed for common business workflows.
-            </p>
+            <ScrollReveal>
+              <Badge variant="purple" className="mb-6">
+                Pre-Built Templates
+              </Badge>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+                Start with a
+                <span className="gradient-text"> Proven Blueprint</span>
+              </h1>
+              <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                Choose from our library of battle-tested swarm templates, designed for common business workflows.
+              </p>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -125,14 +105,14 @@ export default function Templates() {
         {/* Templates Grid - Using Card Component */}
         <section className="pb-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTemplates.map((template, idx) => (
-                <AnimatedSection key={template.id} delay={idx * 50}>
-                  <Card variant="template" className="h-full group">
+            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.06}>
+              {filteredTemplates.map((template) => (
+                <StaggerItem key={template.id}>
+                  <Card variant="template" className="h-full group touch-feedback">
                     <div className="p-6">
                       {/* Header */}
                       <div className="flex items-start justify-between mb-4">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${
+                        <div className={`icon-wrapper w-12 h-12 rounded-xl flex items-center justify-center ${
                           template.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
                           template.color === 'purple' ? 'bg-purple-500/10 text-purple-400' :
                           template.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
@@ -183,25 +163,25 @@ export default function Templates() {
                     <div className="px-6 py-4 border-t border-slate-700/50 bg-slate-800/30">
                       <Link 
                         href={`/builder?template=${template.id}`}
-                        className="btn-secondary w-full text-sm group/btn"
+                        className="btn-secondary w-full text-sm group/btn touch-feedback"
                       >
                         Use Template
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                       </Link>
                     </div>
                   </Card>
-                </AnimatedSection>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
 
             {filteredTemplates.length === 0 && (
-              <div className="text-center py-20">
+              <ScrollReveal className="text-center py-20">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-800/50 flex items-center justify-center">
                   <Search className="w-8 h-8 text-slate-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">No templates found</h3>
                 <p className="text-slate-400">Try adjusting your search or category filter</p>
-              </div>
+              </ScrollReveal>
             )}
           </div>
         </section>
@@ -209,19 +189,21 @@ export default function Templates() {
         {/* CTA Section - Standardized */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Can't Find What You Need?
-            </h2>
-            <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-              Build a custom swarm tailored to your specific workflow. Our AI will help you design the perfect agent team.
-            </p>
-            <Link 
-              href="/builder"
-              className="btn-primary text-lg"
-            >
-              Build Custom Swarm
-              <ArrowRight className="h-5 w-5" />
-            </Link>
+            <ScrollReveal>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Can't Find What You Need?
+              </h2>
+              <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+                Build a custom swarm tailored to your specific workflow. Our AI will help you design the perfect agent team.
+              </p>
+              <Link 
+                href="/builder"
+                className="btn-primary text-lg touch-feedback"
+              >
+                Build Custom Swarm
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </ScrollReveal>
           </div>
         </section>
 

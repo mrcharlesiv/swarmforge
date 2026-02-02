@@ -1,4 +1,6 @@
 import './globals.css'
+import { AnimatedHeroBackground } from '@/app/components/animated-hero-background'
+import { ScrollToTop } from '@/app/components/scroll-to-top'
 
 export const metadata = {
   title: "SwarmForge - Build AI Agent Swarms Without Code",
@@ -32,12 +34,24 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <link rel="canonical" href="https://mrcharlesiv.github.io/swarmforge/" />
       </head>
       <body className="min-h-screen bg-[#0a0f1c] text-white">
-        {children}
+        <AnimatedHeroBackground />
+        
+        {/* Skip to content link for accessibility */}
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-white focus:rounded-lg">
+          Skip to main content
+        </a>
+        
+        <main id="main-content">
+          {children}
+        </main>
+        
+        {/* Scroll to top button */}
+        <ScrollToTop />
       </body>
     </html>
   )
