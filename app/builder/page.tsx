@@ -22,7 +22,7 @@ import { Footer } from '@/app/components/footer';
 import { Card } from '@/app/components/ui/card';
 import { Badge } from '@/app/components/ui/badge';
 
-// Animation wrapper
+// Animation wrapper - content always visible
 function AnimatedSection({ 
   children, 
   className = '',
@@ -32,20 +32,10 @@ function AnimatedSection({
   className?: string;
   delay?: number;
 }) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
   return (
     <div 
       className={`transition-all duration-700 ease-out ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-      }}
+      style={{ opacity: 1 }}
     >
       {children}
     </div>

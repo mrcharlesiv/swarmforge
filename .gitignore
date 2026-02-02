@@ -1,7 +1,22 @@
-node_modules/
-.env.local
-.env
-.next/
-dist/
+.next
 *.log
 .DS_Store
+.env*.local
+node_modules
+
+# Performance audit artifacts
+.bundle-analyzer
+performance-reports
+dist-analysis
+
+# Build analysis
+coverage
+.nyc_output
+
+# IDE files
+.vscode/settings.json
+.idea
+
+# Temporary files
+*.tmp
+*.temp
